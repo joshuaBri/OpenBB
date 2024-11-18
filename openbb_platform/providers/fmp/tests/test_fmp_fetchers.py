@@ -72,6 +72,10 @@ from openbb_fmp.models.share_statistics import FMPShareStatisticsFetcher
 from openbb_fmp.models.treasury_rates import FMPTreasuryRatesFetcher
 from openbb_fmp.models.world_news import FMPWorldNewsFetcher
 from openbb_fmp.models.yield_curve import FMPYieldCurveFetcher
+from openbb_fmp.models.form_13f import FMPForm13FHRFetcher
+from openbb_fmp.models.government_trades import FMPGovernmentTradesFetcher
+from openbb_fmp.models.dcf import FMPDcfFetcher
+from openbb_fmp.models.dcf import FMPDcfFetcher
 
 test_credentials = UserService().default_user_settings.credentials.model_dump(
     mode="json"
@@ -775,5 +779,87 @@ def test_fmp_historical_market_cap_fetcher(credentials=test_credentials):
     }
 
     fetcher = FmpHistoricalMarketCapFetcher()
+    result = fetcher.test(params, credentials)
+    assert result is None
+
+
+@pytest.mark.record_http
+def test_fmp_form_13f_fetcher(credentials=test_credentials):
+    """Test FMP form 13f fetcher."""
+    params = {
+        "symbol": "0001388838",
+        "date": datetime.date(2021, 9, 30),
+        "limit": 1,
+    }
+    fetcher = FMPForm13FHRFetcher()
+    result = fetcher.test(params, credentials)
+    assert result is None
+
+
+@pytest.mark.record_http
+def test_fmp_government_trades_fetcher(credentials=test_credentials):
+    """Test FMP government trades fetcher.
+    params limit only functions when there is no parameter symbol
+    """
+    params = {
+        "chamber": "all",
+        "symbol": "AAPL",
+    }
+    fetcher = FMPGovernmentTradesFetcher()
+    result = fetcher.test(params, credentials)
+    assert result is None
+    params = {
+        "chamber": "all",
+        "limit": 300,
+    }
+    fetcher = FMPGovernmentTradesFetcher()
+    result = fetcher.test(params, credentials)
+    assert result is None
+
+
+@pytest.mark.record_http
+def test_fmp_dcf_fetcher(credentials=test_credentials):
+    """Test Dcf fetcher."""
+    params = {
+        "symbol": "AAPL,A",
+    }
+    fetcher = FMPDcfFetcher()
+    result = fetcher.test(params, credentials)
+    assert result is None
+
+
+@pytest.mark.record_http
+def test_fmp_advanced_dcf_fetcher(credentials=test_credentials):
+    """Test Advanced Dcf fetcher."""
+    params = {
+        "symbol": "AAPL",
+    }
+    fetcher = FMPAdvancedDcfFetcher()
+    result = fetcher.test(params, credentials)
+    assert result is None
+
+
+@pytest.mark.record_http
+def test_fmp_rating_fetcher(credentials=test_credentials):
+    """Test FMP Advanced Dcf fetcher.
+    params limit only functions when there is no parameter symbol
+    """
+    params = {
+        "symbol": "AAPL,600519.SS",
+    }
+    fetcher = FMPRatingFetcher()
+    result = fetcher.test(params, credentials)
+    assert result is None
+
+
+@pytest.mark.record_http
+def test_fmp_historical_rating_fetcher(credentials=test_credentials):
+    """Test FMP Advanced Dcf fetcher.
+    params limit only functions when there is no parameter symbol
+    """
+    params = {
+        "symbol": "AAPL",
+    }
+    fetcher = FMPHistoricalRatingFetcher()
     result = fetcher.test(params, credentials)
     assert result is None
