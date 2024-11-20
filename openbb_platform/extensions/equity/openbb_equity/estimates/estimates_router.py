@@ -189,3 +189,35 @@ async def forward_pe(
 ) -> OBBject:
     """Get forward PE estimates."""
     return await OBBject.from_query(Query(**locals()))
+
+
+@router.command(
+    model="Dcf",
+    examples=[
+        APIEx(parameters={"symbol": "AAPL", "provider": "fmp"}),
+    ],
+)
+async def dcf(
+    cc: CommandContext,
+    provider_choices: ProviderChoices,
+    standard_params: StandardParams,
+    extra_params: ExtraParams,
+) -> OBBject:
+    """Get Discounted Cashflow Data."""
+    return await OBBject.from_query(Query(**locals()))
+
+
+@router.command(
+    model="AdvancedDcf",
+    examples=[
+        APIEx(parameters={"symbol": "AAPL", "provider": "fmp"}),
+    ],
+)
+async def advanced_dcf(
+    cc: CommandContext,
+    provider_choices: ProviderChoices,
+    standard_params: StandardParams,
+    extra_params: ExtraParams,
+) -> OBBject:
+    """Get AdvancedDcf Data."""
+    return await OBBject.from_query(Query(**locals()))

@@ -1,6 +1,7 @@
 """FMP Provider Modules."""
 
 from openbb_core.provider.abstract.provider import Provider
+from openbb_fmp.models.advanced_dcf import FMPAdvancedDcfFetcher
 from openbb_fmp.models.analyst_estimates import FMPAnalystEstimatesFetcher
 from openbb_fmp.models.available_indices import FMPAvailableIndicesFetcher
 from openbb_fmp.models.balance_sheet import FMPBalanceSheetFetcher
@@ -18,6 +19,7 @@ from openbb_fmp.models.crypto_search import FMPCryptoSearchFetcher
 from openbb_fmp.models.currency_historical import FMPCurrencyHistoricalFetcher
 from openbb_fmp.models.currency_pairs import FMPCurrencyPairsFetcher
 from openbb_fmp.models.currency_snapshots import FMPCurrencySnapshotsFetcher
+from openbb_fmp.models.dcf import FMPDcfFetcher
 from openbb_fmp.models.discovery_filings import FMPDiscoveryFilingsFetcher
 from openbb_fmp.models.earnings_call_transcript import FMPEarningsCallTranscriptFetcher
 from openbb_fmp.models.economic_calendar import FMPEconomicCalendarFetcher
@@ -137,6 +139,8 @@ stock market information (news, currencies, and stock prices).""",
         "WorldNews": FMPWorldNewsFetcher,
         "EtfHistorical": FMPEquityHistoricalFetcher,
         "YieldCurve": FMPYieldCurveFetcher,
+        "Dcf": FMPDcfFetcher,
+        "AdvancedDcf": FMPAdvancedDcfFetcher,
     },
     repr_name="Financial Modeling Prep (FMP)",
     deprecated_credentials={"API_KEY_FINANCIALMODELINGPREP": "fmp_api_key"},

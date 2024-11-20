@@ -5,6 +5,8 @@ from datetime import date
 
 import pytest
 from openbb_core.app.service.user_service import UserService
+from openbb_fmp.models.dcf import FMPDcfFetcher
+from openbb_fmp.models.advanced_dcf import FMPAdvancedDcfFetcher
 from openbb_fmp.models.analyst_estimates import FMPAnalystEstimatesFetcher
 from openbb_fmp.models.available_indices import FMPAvailableIndicesFetcher
 from openbb_fmp.models.balance_sheet import FMPBalanceSheetFetcher
@@ -760,5 +762,27 @@ def test_fmp_historical_market_cap_fetcher(credentials=test_credentials):
     }
 
     fetcher = FmpHistoricalMarketCapFetcher()
+    result = fetcher.test(params, credentials)
+    assert result is None
+
+
+@pytest.mark.record_http
+def test_fmp_dcf_fetcher(credentials=test_credentials):
+    """Test Dcf fetcher."""
+    params = {
+        "symbol": "AAPL,A",
+    }
+    fetcher = FMPDcfFetcher()
+    result = fetcher.test(params, credentials)
+    assert result is None
+
+
+@pytest.mark.record_http
+def test_fmp_advanced_dcf_fetcher(credentials=test_credentials):
+    """Test Advanced Dcf fetcher."""
+    params = {
+        "symbol": "AAPL",
+    }
+    fetcher = FMPAdvancedDcfFetcher()
     result = fetcher.test(params, credentials)
     assert result is None
