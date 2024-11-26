@@ -15,6 +15,7 @@ from openbb_yfinance.models.currency_historical import YFinanceCurrencyHistorica
 from openbb_yfinance.models.equity_historical import YFinanceEquityHistoricalFetcher
 from openbb_yfinance.models.equity_profile import YFinanceEquityProfileFetcher
 from openbb_yfinance.models.equity_quote import YFinanceEquityQuoteFetcher
+from openbb_yfinance.models.equity_screener import YFinanceEquityScreenerFetcher
 from openbb_yfinance.models.etf_info import YFinanceEtfInfoFetcher
 from openbb_yfinance.models.futures_curve import YFinanceFuturesCurveFetcher
 from openbb_yfinance.models.futures_historical import YFinanceFuturesHistoricalFetcher
@@ -30,9 +31,6 @@ from openbb_yfinance.models.index_historical import (
 from openbb_yfinance.models.key_executives import YFinanceKeyExecutivesFetcher
 from openbb_yfinance.models.key_metrics import YFinanceKeyMetricsFetcher
 from openbb_yfinance.models.losers import YFLosersFetcher
-from openbb_yfinance.models.market_indices import (
-    YFinanceMarketIndicesFetcher,
-)
 from openbb_yfinance.models.options_chains import YFinanceOptionsChainsFetcher
 from openbb_yfinance.models.price_target_consensus import (
     YFinancePriceTargetConsensusFetcher,
@@ -129,20 +127,6 @@ def test_y_finance_historical_dividends_fetcher(credentials=test_credentials):
     params = {"symbol": "IBM"}
 
     fetcher = YFinanceHistoricalDividendsFetcher()
-    result = fetcher.test(params, credentials)
-    assert result is None
-
-
-@pytest.mark.record_http
-def test_y_finance_market_indices_fetcher(credentials=test_credentials):
-    """Test YFinanceMarketIndicesFetcher."""
-    params = {
-        "symbol": "^GSPC",
-        "start_date": date(2023, 1, 1),
-        "end_date": date(2023, 1, 10),
-    }
-
-    fetcher = YFinanceMarketIndicesFetcher()
     result = fetcher.test(params, credentials)
     assert result is None
 
@@ -368,5 +352,22 @@ def test_y_finance_etf_info_fetcher(credentials=test_credentials):
     params = {"symbol": "QQQ"}
 
     fetcher = YFinanceEtfInfoFetcher()
+    result = fetcher.test(params, credentials)
+    assert result is None
+
+
+@pytest.mark.record_http
+def test_y_finance_equity_screener_fetcher(credentials=test_credentials):
+    """Test YFinanceEquityScreener."""
+    params = {
+        "country": "us",
+        "sector": "consumer_cyclical",
+        "industry": "auto_manufacturers",
+        "mktcap_min": 60000000000,
+        "volume_min": 5000000,
+        "price_min": 10,
+    }
+
+    fetcher = YFinanceEquityScreenerFetcher()
     result = fetcher.test(params, credentials)
     assert result is None
