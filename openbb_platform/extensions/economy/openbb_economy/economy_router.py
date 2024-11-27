@@ -55,16 +55,16 @@ async def calendar(
 @router.command(
     model="ConsumerPriceIndex",
     examples=[
-        APIEx(parameters={"country": "japan,china,turkey", "provider": "fred"}),
         APIEx(
             description="Use the `transform` parameter to define the reference period for the change in values."
-            + " Default is YoY.",
+                        + " Default is YoY.",
             parameters={
                 "country": "united_states,united_kingdom",
                 "transform": "period",
                 "provider": "oecd",
             },
         ),
+        APIEx(parameters={"country": "japan,china,turkey", "provider": "fred"}),
     ],
 )
 async def cpi(
@@ -117,7 +117,15 @@ async def balance_of_payments(
     return await OBBject.from_query(Query(**locals()))
 
 
-@router.command(model="FredSearch", examples=[APIEx(parameters={"provider": "fred"})])
+@router.command(
+    model="FredSearch",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
+    examples=[APIEx(parameters={"provider": "fred"})])
 async def fred_search(
     cc: CommandContext,
     provider_choices: ProviderChoices,
@@ -134,6 +142,12 @@ async def fred_search(
 
 @router.command(
     model="FredSeries",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"symbol": "NFCI", "provider": "fred"}),
         APIEx(
@@ -158,6 +172,12 @@ async def fred_series(
 
 @router.command(
     model="FredReleaseTable",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(
             description="Get the top-level elements of a release by not supplying an element ID.",
@@ -324,6 +344,12 @@ async def long_term_interest_rate(
 
 @router.command(
     model="FredRegional",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(
             parameters={"symbol": "NYICLAIMS", "provider": "fred"},
@@ -596,6 +622,12 @@ async def interest_rates(
 
 @router.command(
     model="RetailPrices",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(
@@ -650,6 +682,12 @@ async def primary_dealer_positioning(
 
 @router.command(
     model="PersonalConsumptionExpenditures",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(
@@ -690,6 +728,12 @@ async def export_destinations(
 
 @router.command(
     model="PrimaryDealerFails",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "federal_reserve"}),
         APIEx(

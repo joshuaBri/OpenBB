@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "openbb-extensions"
+version = "1.0.0"
+description = "Investment research for everyone, anywhere."
+authors = ["OpenBB Team <hello@openbb.co>"]
+license = "AGPL-3.0-only"
+readme = "README.md"
+packages = [
+    { include = "openbb_commodity", from = "commodity"},
+    { include = "openbb_derivatives", from = "derivatives"},
+    { include = "openbb_econometrics", from = "econometrics"},
+    { include = "openbb_economy", from = "economy"},
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.13"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

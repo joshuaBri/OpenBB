@@ -1,5 +1,5 @@
 """Economy Survey Router."""
-
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.command_context import CommandContext
 from openbb_core.app.model.example import APIEx
 from openbb_core.app.model.obbject import OBBject
@@ -18,6 +18,12 @@ router = Router(prefix="/survey")
 
 @router.command(
     model="BlsSeries",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "bls", "symbol": "CES0000000001"}),
     ],
@@ -63,6 +69,12 @@ async def bls_search(
 
 @router.command(
     model="SeniorLoanOfficerSurvey",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"category": "credit_card", "provider": "fred"}),
@@ -80,6 +92,12 @@ async def sloos(
 
 @router.command(
     model="UniversityOfMichigan",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
     ],
@@ -96,6 +114,12 @@ async def university_of_michigan(
 
 @router.command(
     model="SurveyOfEconomicConditionsChicago",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
     ],
@@ -112,6 +136,12 @@ async def economic_conditions_chicago(
 
 @router.command(
     model="ManufacturingOutlookTexas",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(
@@ -135,6 +165,12 @@ async def manufacturing_outlook_texas(
 
 @router.command(
     model="NonFarmPayrolls",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(
