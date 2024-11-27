@@ -1,5 +1,5 @@
 """The Commodity router."""
-
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 # pylint: disable=unused-argument,unused-import
 # flake8: noqa: F401
 
@@ -26,6 +26,12 @@ router.include_router(price_router)
 
 @router.command(
     model="PetroleumStatusReport",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="Xiao Yuan doesn't support this endpoint.Please ignore.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(
             description="Get the EIA's Weekly Petroleum Status Report.",
@@ -53,6 +59,12 @@ async def petroleum_status_report(
 
 @router.command(
     model="ShortTermEnergyOutlook",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="Xiao Yuan doesn't support this endpoint.Please ignore.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(
             description="Get the EIA's Short Term Energy Outlook.",

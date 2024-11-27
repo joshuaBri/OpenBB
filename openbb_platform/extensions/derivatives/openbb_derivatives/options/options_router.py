@@ -1,5 +1,5 @@
 """Options Router."""
-
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.command_context import CommandContext
 from openbb_core.app.model.example import APIEx
 from openbb_core.app.model.obbject import OBBject
@@ -18,6 +18,12 @@ router = Router(prefix="/options")
 
 @router.command(
     model="OptionsChains",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="Yfinance requires a VPN, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"symbol": "AAPL", "provider": "intrinio"}),
         APIEx(
@@ -38,6 +44,12 @@ async def chains(
 
 @router.command(
     model="OptionsUnusual",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"symbol": "TSLA", "provider": "intrinio"}),
         APIEx(
@@ -58,6 +70,12 @@ async def unusual(
 
 @router.command(
     model="OptionsSnapshots",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(
             parameters={"provider": "intrinio"},

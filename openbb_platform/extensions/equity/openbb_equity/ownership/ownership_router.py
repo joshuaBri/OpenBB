@@ -118,7 +118,7 @@ async def form_13f(
     model="GovernmentTrades",
     examples=[
         APIEx(parameters={"symbol": "AAPL","chamber": "all", "provider": "fmp"}),
-        APIEx(parameters={"limit": 500,"chamber": "all", "provider": "fmp"}),
+        APIEx(parameters={"limit": 500, "chamber": "all", "provider": "fmp"}),
     ],
 )
 async def government_trades(

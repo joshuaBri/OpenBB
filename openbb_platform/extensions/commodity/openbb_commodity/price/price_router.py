@@ -1,5 +1,5 @@
 """Price Router."""
-
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 # pylint: disable=unused-argument
 
 from openbb_core.app.model.command_context import CommandContext
@@ -18,6 +18,12 @@ router = Router(prefix="/price")
 
 @router.command(
     model="CommoditySpotPrices",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="Xiao Yuan doesn't support this endpoint.Please ignore.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"provider": "fred", "commodity": "wti"}),

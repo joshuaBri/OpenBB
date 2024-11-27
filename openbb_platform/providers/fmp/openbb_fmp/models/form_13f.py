@@ -10,6 +10,7 @@ from openbb_core.provider.standard_models.form_13FHR import (
     Form13FHRData,
     Form13FHRQueryParams,
 )
+from openbb_core.provider.utils.descriptions import DATA_DESCRIPTIONS
 from openbb_core.provider.utils.errors import EmptyDataError
 from openbb_core.provider.utils.helpers import amake_request
 from openbb_fmp.utils.helpers import create_url
@@ -33,17 +34,17 @@ class FMPForm13FHRData(Form13FHRData):
         "asset_class": "titleOfClass",
         "filling_date": "fillingDate",
         "accepted_date": "acceptedDate",
-        "ticker_cusip": "tickercusip",
+        "symbol": "tickercusip",
         "final_link": "finalLink",
     }
+    symbol: Optional[str] = Field(
+        default=None, description=DATA_DESCRIPTIONS.get("symbol", "")
+    )
     filling_date: dateType = Field(
         default=None, description="Date when the filing was submitted to the SEC."
     )
     accepted_date: dateType = Field(
         default=None, description="Date when the filing was accepted by the SEC."
-    )
-    ticker_cusip: Optional[str] = Field(
-        default=None, description="Ticker symbol associated with the CUSIP."
     )
     link: Optional[str] = Field(
         default=None, description="URL link to the SEC filing on the SEC website."
