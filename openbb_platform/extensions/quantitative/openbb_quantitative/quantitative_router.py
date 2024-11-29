@@ -2,6 +2,7 @@
 
 from typing import List, Literal
 
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.example import APIEx, PythonEx
 from openbb_core.app.model.obbject import OBBject
 from openbb_core.app.router import Router
@@ -30,6 +31,12 @@ router.include_router(performance_router)
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Normality Statistics.",
@@ -91,6 +98,12 @@ def normality(data: List[Data], target: str) -> OBBject[NormalityModel]:
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Capital Asset Pricing Model (CAPM).",
@@ -163,6 +176,12 @@ def capm(data: List[Data], target: str) -> OBBject[CAPMModel]:
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Unit Root Test.",
@@ -238,6 +257,12 @@ def unitroot_test(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Summary Statistics.",

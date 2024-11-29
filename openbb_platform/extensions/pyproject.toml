@@ -10,6 +10,11 @@ packages = [
     { include = "openbb_derivatives", from = "derivatives"},
     { include = "openbb_econometrics", from = "econometrics"},
     { include = "openbb_economy", from = "economy"},
+    { include = "openbb_equity", from = "equity"},
+    { include = "openbb_etf", from = "etf"},
+    { include = "openbb_fixedincome", from = "fixedincome"},
+    { include = "openbb_quantitative", from = "quantitative"},
+    { include = "openbb_technical", from = "technical"},
 ]
 
 [tool.poetry.dependencies]

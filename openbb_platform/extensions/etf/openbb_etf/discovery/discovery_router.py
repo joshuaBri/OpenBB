@@ -1,5 +1,5 @@
 """Disc router for ETFs."""
-
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.command_context import CommandContext
 from openbb_core.app.model.example import APIEx
 from openbb_core.app.model.obbject import OBBject
@@ -18,6 +18,12 @@ router = Router(prefix="/discovery")
 
 @router.command(
     model="ETFGainers",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     operation_id="etf_gainers",
     examples=[
         APIEx(description="Get the top ETF gainers.", parameters={"provider": "wsj"}),
@@ -35,6 +41,12 @@ async def gainers(
 
 @router.command(
     model="ETFLosers",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     operation_id="etf_losers",
     examples=[
         APIEx(description="Get the top ETF losers.", parameters={"provider": "wsj"}),
@@ -52,6 +64,12 @@ async def losers(
 
 @router.command(
     model="ETFActive",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     operation_id="etf_active",
     examples=[
         APIEx(description="Get the most active ETFs.", parameters={"provider": "wsj"}),

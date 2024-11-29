@@ -1,5 +1,5 @@
 """Disc router for Equities."""
-
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 # pylint: disable=unused-argument
 from openbb_core.app.model.command_context import CommandContext
 from openbb_core.app.model.example import APIEx
@@ -51,6 +51,12 @@ async def losers(
 
 @router.command(
     model="EquityActive",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="Yfinance requires a VPN, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "yfinance"}),
         APIEx(parameters={"sort": "desc", "provider": "yfinance"}),
@@ -68,6 +74,12 @@ async def active(
 
 @router.command(
     model="EquityUndervaluedLargeCaps",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="Yfinance requires a VPN, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "yfinance"}),
         APIEx(parameters={"sort": "desc", "provider": "yfinance"}),
@@ -85,6 +97,12 @@ async def undervalued_large_caps(
 
 @router.command(
     model="EquityUndervaluedGrowth",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="Yfinance requires a VPN, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "yfinance"}),
         APIEx(parameters={"sort": "desc", "provider": "yfinance"}),
@@ -119,6 +137,12 @@ async def aggressive_small_caps(
 
 @router.command(
     model="GrowthTechEquities",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="Yfinance requires a VPN, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "yfinance"}),
         APIEx(parameters={"sort": "desc", "provider": "yfinance"}),
@@ -136,6 +160,12 @@ async def growth_tech(
 
 @router.command(
     model="TopRetail",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="Yfinance requires a VPN, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[APIEx(parameters={"provider": "nasdaq"})],
 )
 async def top_retail(

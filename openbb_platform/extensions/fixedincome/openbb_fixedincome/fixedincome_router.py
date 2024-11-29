@@ -54,6 +54,12 @@ async def sofr(
 
 @router.command(
     model="BondIndices",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(
             description="The default state for FRED are series for constructing the US Corporate Bond Yield Curve.",
@@ -91,6 +97,12 @@ async def bond_indices(
 
 @router.command(
     model="MortgageIndices",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(
             description="The default state for FRED are the primary mortgage indices from Optimal Blue.",

@@ -171,6 +171,12 @@ async def treasury_prices(
 
 @router.command(
     model="TipsYields",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"maturity": 10, "provider": "fred"}),

@@ -1,5 +1,5 @@
 """Fixed Income Rate Router."""
-
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.command_context import CommandContext
 from openbb_core.app.model.example import APIEx
 from openbb_core.app.model.obbject import OBBject
@@ -18,6 +18,12 @@ router = Router(prefix="/rate")
 
 @router.command(
     model="Ameribor",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(
@@ -43,6 +49,12 @@ async def ameribor(
 
 @router.command(
     model="SONIA",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"parameter": "total_nominal_value", "provider": "fred"}),
@@ -85,6 +97,12 @@ async def sofr(
 
 @router.command(
     model="IORB",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[APIEx(parameters={"provider": "fred"})],
 )
 async def iorb(
@@ -125,6 +143,12 @@ async def effr(
 
 @router.command(
     model="PROJECTIONS",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"long_run": True, "provider": "fred"}),
@@ -148,6 +172,12 @@ async def effr_forecast(
 
 @router.command(
     model="EuroShortTermRate",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"transform": "ch1", "provider": "fred"}),
@@ -171,6 +201,12 @@ async def estr(
 
 @router.command(
     model="EuropeanCentralBankInterestRates",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"interest_rate_type": "refinancing", "provider": "fred"}),
@@ -196,6 +232,12 @@ async def ecb(
 
 @router.command(
     model="DiscountWindowPrimaryCreditRate",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(

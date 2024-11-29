@@ -4,6 +4,7 @@
 
 from typing import Any, Dict, List, Literal, Optional
 
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.example import APIEx, PythonEx
 from openbb_core.app.model.obbject import OBBject
 from openbb_core.app.router import Router
@@ -34,6 +35,12 @@ router = Router(prefix="", description="Technical Analysis tools.")
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Calculate the Relative Strength Ratio and Relative Strength Momentum"
@@ -165,6 +172,12 @@ async def relative_rotation(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Average True Range.",
@@ -233,6 +246,12 @@ def atr(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Bollinger Band Width.",
@@ -304,6 +323,12 @@ def fib(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the On Balance Volume (OBV).",
@@ -361,6 +386,12 @@ def obv(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Perform the Fisher Transform.",
@@ -419,6 +450,12 @@ def fisher(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Accumulation/Distribution Oscillator.",
@@ -481,6 +518,12 @@ def adosc(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Chande Momentum Oscillator.",
@@ -564,6 +607,12 @@ def bbands(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Chande Momentum Oscillator.",
@@ -633,6 +682,12 @@ def zlma(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Chande Momentum Oscillator.",
@@ -697,6 +752,12 @@ def aroon(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Chande Momentum Oscillator.",
@@ -767,6 +828,12 @@ def sma(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Demark Sequential Indicator.",
@@ -830,6 +897,12 @@ def demark(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Volume Weighted Average Price (VWAP).",
@@ -890,6 +963,12 @@ def vwap(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Moving Average Convergence Divergence (MACD).",
@@ -972,6 +1051,12 @@ def macd(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Calculate HMA with historical stock data.",
@@ -1038,6 +1123,12 @@ def hma(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Donchian Channels.",
@@ -1109,6 +1200,12 @@ def donchian(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Ichimoku Cloud.",
@@ -1179,6 +1276,12 @@ def ichimoku(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Clenow Volatility Adjusted Momentum.",
@@ -1245,6 +1348,12 @@ def clenow(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Accumulation/Distribution Line.",
@@ -1302,6 +1411,12 @@ def ad(data: List[Data], index: str = "date", offset: int = 0) -> OBBject[List[D
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Average Directional Index (ADX).",
@@ -1363,6 +1478,12 @@ def adx(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Average True Range (ATR).",
@@ -1430,6 +1551,12 @@ def wma(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Commodity Channel Index (CCI).",
@@ -1488,6 +1615,12 @@ def cci(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Relative Strength Index (RSI).",
@@ -1560,6 +1693,12 @@ def rsi(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Stochastic Oscillator.",
@@ -1627,6 +1766,12 @@ def stoch(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Keltner Channels.",
@@ -1697,6 +1842,12 @@ def kc(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Center of Gravity (CG).",
@@ -1750,6 +1901,12 @@ def cg(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Realized Volatility Cones.",
@@ -1855,6 +2012,12 @@ def cones(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get the Exponential Moving Average (EMA).",

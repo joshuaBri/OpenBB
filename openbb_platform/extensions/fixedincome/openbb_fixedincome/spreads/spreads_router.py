@@ -1,5 +1,5 @@
 """Fixed Income Corporate Router."""
-
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.command_context import CommandContext
 from openbb_core.app.model.example import APIEx
 from openbb_core.app.model.obbject import OBBject
@@ -18,6 +18,12 @@ router = Router(prefix="/spreads")
 
 @router.command(
     model="TreasuryConstantMaturity",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"maturity": "2y", "provider": "fred"}),
@@ -41,6 +47,12 @@ async def tcm(
 
 @router.command(
     model="SelectedTreasuryConstantMaturity",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"maturity": "10y", "provider": "fred"}),
@@ -64,6 +76,12 @@ async def tcm_effr(
 
 @router.command(
     model="SelectedTreasuryBill",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"maturity": "6m", "provider": "fred"}),

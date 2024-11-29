@@ -2,6 +2,7 @@
 
 from typing import List
 
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.example import APIEx, PythonEx
 from openbb_core.app.model.obbject import OBBject
 from openbb_core.app.router import Router
@@ -13,6 +14,12 @@ router = Router(prefix="/rolling")
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Rolling Mean.",
@@ -85,6 +92,12 @@ def skew(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Rolling Variance.",
@@ -152,6 +165,12 @@ def variance(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Rolling Standard Deviation.",
@@ -222,6 +241,12 @@ def stdev(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Rolling Kurtosis.",
@@ -294,6 +319,12 @@ def kurtosis(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Rolling Quantile.",
@@ -383,6 +414,12 @@ def quantile(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Rolling Mean.",

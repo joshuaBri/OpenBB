@@ -1,5 +1,5 @@
 """Shorts Router."""
-
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.command_context import CommandContext
 from openbb_core.app.model.example import APIEx
 from openbb_core.app.model.obbject import OBBject
@@ -46,6 +46,12 @@ async def short_volume(
 
 @router.command(
     model="EquityShortInterest",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[APIEx(parameters={"symbol": "AAPL", "provider": "finra"})],
 )
 async def short_interest(

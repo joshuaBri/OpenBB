@@ -2,6 +2,7 @@
 
 from typing import List
 
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.example import APIEx, PythonEx
 from openbb_core.app.model.obbject import OBBject
 from openbb_core.app.router import Router
@@ -13,6 +14,12 @@ router = Router(prefix="/stats")
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Skewness.",
@@ -76,6 +83,12 @@ def skew(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Variance.",
@@ -133,6 +146,12 @@ def variance(data: List[Data], target: str) -> OBBject[List[Data]]:
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Standard Deviation.",
@@ -191,6 +210,12 @@ def stdev(data: List[Data], target: str) -> OBBject[List[Data]]:
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Kurtosis.",
@@ -250,6 +275,12 @@ def kurtosis(data: List[Data], target: str) -> OBBject[List[Data]]:
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Quantile.",
@@ -315,6 +346,12 @@ def quantile(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Mean.",

@@ -1,6 +1,6 @@
 # pylint: disable=W0613:unused-argument
 """Fundamental Analysis Router."""
-
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.command_context import CommandContext
 from openbb_core.app.model.example import APIEx
 from openbb_core.app.model.obbject import OBBject
@@ -96,6 +96,12 @@ async def cash(
 
 @router.command(
     model="ReportedFinancials",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"symbol": "AAPL", "provider": "intrinio"}),
         APIEx(
@@ -197,6 +203,12 @@ async def employee_count(
 
 @router.command(
     model="SearchAttributes",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[APIEx(parameters={"query": "ebitda", "provider": "intrinio"})],
 )
 async def search_attributes(
@@ -211,6 +223,12 @@ async def search_attributes(
 
 @router.command(
     model="LatestAttributes",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"symbol": "AAPL", "tag": "ceo", "provider": "intrinio"})
     ],
@@ -227,6 +245,12 @@ async def latest_attributes(
 
 @router.command(
     model="HistoricalAttributes",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"symbol": "AAPL", "tag": "ebitda", "provider": "intrinio"})
     ],
@@ -464,6 +488,12 @@ async def transcript(
 
 @router.command(
     model="TrailingDividendYield",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"symbol": "AAPL", "provider": "tiingo"}),
         APIEx(parameters={"symbol": "AAPL", "limit": 252, "provider": "tiingo"}),

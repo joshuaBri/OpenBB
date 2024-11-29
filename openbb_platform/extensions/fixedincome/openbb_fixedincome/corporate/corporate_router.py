@@ -79,6 +79,12 @@ async def moody(
 
 @router.command(
     model="HighQualityMarketCorporateBond",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"yield_curve": "par", "provider": "fred"}),
@@ -102,6 +108,12 @@ async def hqm(
 
 @router.command(
     model="SpotRate",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"maturity": "10,20,30,50", "provider": "fred"}),
@@ -125,6 +137,12 @@ async def spot_rates(
 
 @router.command(
     model="CommercialPaper",
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available providers, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         APIEx(parameters={"provider": "fred"}),
         APIEx(parameters={"category": "all", "maturity": "15d", "provider": "fred"}),

@@ -2,6 +2,7 @@
 
 from typing import TYPE_CHECKING, List
 
+from openbb_core.app.deprecation import OpenBBDeprecationWarning
 from openbb_core.app.model.example import APIEx, PythonEx
 from openbb_core.app.model.obbject import OBBject
 from openbb_core.app.router import Router
@@ -19,6 +20,12 @@ router = Router(prefix="/performance")
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Omega Ratio.",
@@ -99,6 +106,12 @@ def omega_ratio(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Rolling Sharpe Ratio.",
@@ -177,6 +190,12 @@ def sharpe_ratio(
 
 @router.command(
     methods=["POST"],
+    deprecated=True,
+    deprecation=OpenBBDeprecationWarning(
+        message="There are no available OPENBB_API_PASSWORD and OPENBB_API_USERNAME, so we don't support this endpoint. Please ignore it.",
+        since=(4, 3),
+        expected_removal=(4, 5),
+    ),
     examples=[
         PythonEx(
             description="Get Rolling Sortino Ratio.",
