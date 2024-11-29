@@ -4717,4 +4717,4 @@ wsj = ["openbb-wsj"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "74c863b3da0d40a7c9c93148ec80e324f869981fcb669f874f34b4f6190457b1"
+content-hash = "66f79675652ff37dcbeaa8992cd752b050ec2cabdc6b92773c7a33535c75c60e"

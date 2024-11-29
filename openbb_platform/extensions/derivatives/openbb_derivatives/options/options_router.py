@@ -18,12 +18,6 @@ router = Router(prefix="/options")
 
 @router.command(
     model="OptionsChains",
-    deprecated=True,
-    deprecation=OpenBBDeprecationWarning(
-        message="Yfinance requires a VPN, so we don't support this endpoint. Please ignore it.",
-        since=(4, 3),
-        expected_removal=(4, 5),
-    ),
     examples=[
         APIEx(parameters={"symbol": "AAPL", "provider": "intrinio"}),
         APIEx(
