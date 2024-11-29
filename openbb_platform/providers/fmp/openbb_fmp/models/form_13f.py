@@ -1,9 +1,11 @@
 """Form 13f Model."""
 
 import asyncio
-from datetime import date as dateType
+from datetime import date as dateType, datetime
 from typing import Any, Dict, List, Optional
 from warnings import warn
+
+from pydantic import Field
 
 from openbb_core.provider.abstract.fetcher import Fetcher
 from openbb_core.provider.standard_models.form_13FHR import (
@@ -13,8 +15,7 @@ from openbb_core.provider.standard_models.form_13FHR import (
 from openbb_core.provider.utils.descriptions import DATA_DESCRIPTIONS
 from openbb_core.provider.utils.errors import EmptyDataError
 from openbb_core.provider.utils.helpers import amake_request
-from openbb_fmp.utils.helpers import create_url
-from pydantic import Field
+from openbb_fmp.utils.helpers import create_url, response_callback
 
 
 class FMPForm13FHRQueryParams(Form13FHRQueryParams):
@@ -40,10 +41,10 @@ class FMPForm13FHRData(Form13FHRData):
     symbol: Optional[str] = Field(
         default=None, description=DATA_DESCRIPTIONS.get("symbol", "")
     )
-    filling_date: dateType = Field(
+    filling_date: Optional[dateType] = Field(
         default=None, description="Date when the filing was submitted to the SEC."
     )
-    accepted_date: dateType = Field(
+    accepted_date: Optional[dateType] = Field(
         default=None, description="Date when the filing was accepted by the SEC."
     )
     link: Optional[str] = Field(
@@ -74,32 +75,63 @@ class FMPForm13FHRFetcher(
         credentials: Optional[Dict[str, str]] = None,
         **kwargs: Any,
     ) -> List[Dict]:
-        """Return the raw data from the House Disclosure endpoint."""
-        symbols = query.symbol.split(",")
+        """Return the raw data from the Form 13f endpoint."""
+        """Return the raw data from the Form 13f endpoint."""
+        api_key = credentials.get("fmp_api_key") if credentials else ""
+        symbol = query.symbol
+        if symbol.isnumeric():
+            cik = symbol
+        else:
+            query.includeCurrentQuarter = "false"
+            cik_url = create_url(
+                4,
+                f"institutional-ownership/symbol-ownership",
+                api_key,
+                query,
+                exclude=["limit"],
+            )
+            cik = await amake_request(cik_url, response_callback=response_callback, **kwargs)
+            if len(cik) == 0:
+                raise EmptyDataError("Can't get cik for the given symbol.")
+            cik = cik[0]["cik"]
+            del query.includeCurrentQuarter
+        date_url = create_url(
+            3,
+            f"form-thirteen-date/{cik}",
+            api_key,
+            query,
+            exclude=["symbol", "limit"],
+        )
+        dates = await amake_request(date_url, response_callback=response_callback, **kwargs)
+        if not dates:
+            raise EmptyDataError("No data returned for the given symbol.")
+        if not dates or len(dates) == 0:
+            warn(f"Symbol Error: No data found for symbol {symbol}")
         results: List[Dict] = []
 
-        async def get_one(symbol):
-            """Get data for the given symbol."""
-            api_key = credentials.get("fmp_api_key") if credentials else ""
+        async def get_one(date):
+            """Get data for the given date."""
+            date = datetime.strptime(date, "%Y-%m-%d").date()
+            query.date = date
             url = create_url(
                 3,
-                f"form-thirteen/{symbol}",
+                f"form-thirteen/{cik}",
                 api_key,
                 query,
                 exclude=["symbol", "limit"],
             )
-            result = await amake_request(url, **kwargs)
+            result = await amake_request(url, response_callback=response_callback, **kwargs)
             if not result or len(result) == 0:
                 warn(f"Symbol Error: No data found for symbol {symbol}")
             if result:
                 results.extend(result)
 
-        await asyncio.gather(*[get_one(symbol) for symbol in symbols])
+        await asyncio.gather(*[get_one(date) for date in dates])
 
-        results = [i for i in results if isinstance(i, dict)]
         if not results:
             raise EmptyDataError("No data returned for the given symbol.")
-
+        if query.limit:
+            return results[:query.limit]
         return results
 
     @staticmethod
@@ -107,4 +139,6 @@ class FMPForm13FHRFetcher(
         query: FMPForm13FHRQueryParams, data: List[Dict], **kwargs: Any
     ) -> List[FMPForm13FHRData]:
         """Return the transformed data."""
+        if query.symbol.isnumeric():
+            [d.pop("cik", None) for d in data]
         return [FMPForm13FHRData(**d) for d in data]

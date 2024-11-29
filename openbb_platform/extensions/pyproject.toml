@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "openbb-extensions"
-version = "1.0.0"
-description = "Investment research for everyone, anywhere."
+version = "1.1.0"
+description = "Only for jnzd, aggreate different extensions."
 authors = ["OpenBB Team <hello@openbb.co>"]
 license = "AGPL-3.0-only"
 readme = "README.md"
