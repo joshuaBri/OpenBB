@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openbb-extensions"
-version = "1.1.0"
+version = "1.2.0"
 description = "Only for jnzd, aggreate different extensions."
 authors = ["OpenBB Team <hello@openbb.co>"]
 license = "AGPL-3.0-only"
@@ -12,9 +12,11 @@ packages = [
     { include = "openbb_economy", from = "economy"},
     { include = "openbb_equity", from = "equity"},
     { include = "openbb_etf", from = "etf"},
+    { include = "openbb_fund", from = "fund"},
     { include = "openbb_fixedincome", from = "fixedincome"},
     { include = "openbb_quantitative", from = "quantitative"},
     { include = "openbb_technical", from = "technical"},
+    { include = "openbb_index", from = "index"},
 ]
 
 [tool.poetry.dependencies]

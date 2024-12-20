@@ -12,9 +12,11 @@ from openbb_core.app.query import Query
 from openbb_core.app.router import Router
 
 from openbb_index.price.price_router import router as price_router
+from openbb_index.fundamental.fundamental_router import router as fundamental_router
 
 router = Router(prefix="", description="Indices data.")
 router.include_router(price_router)
+router.include_router(fundamental_router)
 
 # pylint: disable=unused-argument
 

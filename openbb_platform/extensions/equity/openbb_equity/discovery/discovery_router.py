@@ -204,3 +204,22 @@ async def latest_financial_reports(
 ) -> OBBject:
     """Get the newest quarterly, annual, and current reports for all companies."""
     return await OBBject.from_query(Query(**locals()))
+
+
+@router.command(
+    model="EquityBigDeals",
+    examples=[
+        APIEx(parameters={
+            "symbol": "600519.SS,000001.SZ",
+            "date": "2024-11-20",
+            "provider": "xiaoyuan"}),
+    ],
+)
+async def big_deals(
+    cc: CommandContext,
+    provider_choices: ProviderChoices,
+    standard_params: StandardParams,
+    extra_params: ExtraParams,
+) -> OBBject:
+    """Get the big deals data for certaion symbol and date"""
+    return await OBBject.from_query(Query(**locals()))

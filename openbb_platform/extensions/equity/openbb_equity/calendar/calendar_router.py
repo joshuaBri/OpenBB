@@ -114,3 +114,19 @@ async def earnings(
 ) -> OBBject:
     """Get historical and upcoming company earnings releases. Includes earnings per share (EPS) and revenue data."""
     return await OBBject.from_query(Query(**locals()))
+
+
+@router.command(
+    model="CalendarTradeDays",
+    examples=[
+        APIEx(parameters={"provider": "xiaoyuan"}),
+    ],
+)
+async def trade_days(
+    cc: CommandContext,
+    provider_choices: ProviderChoices,
+    standard_params: StandardParams,
+    extra_params: ExtraParams,
+) -> OBBject:
+    """Get trade days list."""
+    return await OBBject.from_query(Query(**locals()))
