@@ -507,3 +507,19 @@ async def trailing_dividend_yield(
 ) -> OBBject:
     """Get the 1 year trailing dividend yield for a given company over time."""
     return await OBBject.from_query(Query(**locals()))
+
+
+@router.command(
+    model="BusinessAnalysis",
+    examples=[
+        APIEx(parameters={"symbol": "600519.SS", "provider": "akshare"}),
+    ],
+)
+async def business_analysis(
+    cc: CommandContext,
+    provider_choices: ProviderChoices,
+    standard_params: StandardParams,
+    extra_params: ExtraParams,
+) -> OBBject:
+    """Get the business analysis data for a given company over time."""
+    return await OBBject.from_query(Query(**locals()))
