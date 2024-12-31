@@ -63,6 +63,7 @@ def test_nasdaq_calendar_dividend_fetcher(credentials=test_credentials):
     params = {
         "start_date": datetime.date(2024, 7, 1),
         "end_date": datetime.date(2024, 7, 7),
+        "use_cache": True
     }
 
     fetcher = NasdaqCalendarDividendFetcher()
