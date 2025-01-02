@@ -66,7 +66,7 @@ def test_sec_etf_holdings_fetcher(credentials=test_credentials):
 @pytest.mark.record_http
 def test_sec_sic_search_fetcher(credentials=test_credentials):
     """Test the SEC SIC Search fetcher."""
-    params = {"query": "oil", "use_cache": False}
+    params = {"query": "oil", "use_cache": True}
 
     fetcher = SecSicSearchFetcher()
     result = fetcher.test(params, credentials)

@@ -27,7 +27,7 @@ def vcr_config():
     }
 
 
-@pytest.mark.record_http
+# @pytest.mark.record_http
 def test_government_us_treasury_auctions_fetcher(credentials=test_credentials):
     """Test GovernmentUSTreasuryAuctionsFetcher."""
     params = {

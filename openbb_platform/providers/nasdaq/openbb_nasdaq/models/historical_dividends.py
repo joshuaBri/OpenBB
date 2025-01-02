@@ -25,6 +25,7 @@ class NasdaqHistoricalDividendsQueryParams(HistoricalDividendsQueryParams):
     """Nasdaq Historical Dividends Query Params."""
 
     __json_schema_extra__ = {"symbol": {"multiple_items_allowed": True}}
+
     use_cache: Optional[bool] = Field(
         default=True,
         description="Whether or not to use cache. If True, cache will store for two days.",
@@ -126,10 +127,8 @@ class NasdaqHistoricalDividendsFetcher(
             response = await get_data_from_url(url=url, file_path="historical_dividends", use_cache=query.use_cache,
                                              headers=IPO_HEADERS)
             if response.get("status").get("rCode") == 400:  # type: ignore
-                response = await amake_request(
-                    url.replace("stocks", "etf"),
-                    headers=IPO_HEADERS,
-                )
+                response = await get_data_from_url(url=url.replace("stocks", "etf"), file_path="historical_dividends", use_cache=query.use_cache,
+                                                   headers=IPO_HEADERS)
             if response.get("status").get("rCode") == 200:  # type: ignore
                 data = response.get("data").get("dividends").get("rows")  # type: ignore
 

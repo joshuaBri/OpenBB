@@ -1,8 +1,12 @@
 """US Government Treasury Auctions Model."""
-
+import json
 # pylint: disable=unused-argument
 
 from typing import Any, Dict, List, Optional
+
+import pandas as pd
+
+from openbb_core.provider.utils.errors import EmptyDataError
 
 from openbb_core.app.model.abstract.error import OpenBBError
 from openbb_core.provider.abstract.fetcher import Fetcher
@@ -10,7 +14,9 @@ from openbb_core.provider.standard_models.treasury_auctions import (
     USTreasuryAuctionsData,
     USTreasuryAuctionsQueryParams,
 )
-from pydantic import model_validator
+from pydantic import model_validator, Field
+
+from openbb_government_us.utils.helpers import get_data_from_url
 
 
 class GovernmentUSTreasuryAuctionsQueryParams(USTreasuryAuctionsQueryParams):
@@ -18,6 +24,10 @@ class GovernmentUSTreasuryAuctionsQueryParams(USTreasuryAuctionsQueryParams):
 
     Source: https://www.treasurydirect.gov/
     """
+    use_cache: Optional[bool] = Field(
+        default=True,
+        description="Whether or not to use cache. If True, cache will store for two days.",
+    )
 
     __alias_dict__ = {
         "security_type": "type",
@@ -180,7 +190,7 @@ class GovernmentUSTreasuryAuctionsFetcher(
         return GovernmentUSTreasuryAuctionsQueryParams(**params)
 
     @staticmethod
-    def extract_data(
+    async def extract_data(
         query: GovernmentUSTreasuryAuctionsQueryParams,
         credentials: Optional[Dict[str, str]],
         **kwargs: Any,
@@ -190,7 +200,7 @@ class GovernmentUSTreasuryAuctionsFetcher(
         from pandas import DataFrame  # noqa
         from openbb_core.provider.utils.helpers import (
             get_querystring,
-            make_request,
+            amake_request,
         )  # noqa
 
         base_url = "https://www.treasurydirect.gov/TA_WS/securities/search?"
@@ -215,10 +225,10 @@ class GovernmentUSTreasuryAuctionsFetcher(
         query_string = get_querystring(_query, [])
 
         url = base_url + query_string + "&format=json"
-        r = make_request(url)
-        if r.status_code != 200:
-            raise OpenBBError(f"{r.status_code}")
-        data = DataFrame(r.json())
+        r = await get_data_from_url(url,"government_us", use_cache=query.use_cache)
+        data = pd.DataFrame.from_dict(r)
+        if data.empty:
+            raise EmptyDataError("No data found for the given query.")
         results = (
             data.fillna("N/A").replace("", None).replace("N/A", None).to_dict("records")
         )
