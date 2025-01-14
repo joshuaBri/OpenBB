@@ -33,6 +33,7 @@ def test_government_us_treasury_auctions_fetcher(credentials=test_credentials):
     params = {
         "start_date": datetime.date(2023, 9, 1),
         "end_date": datetime.date(2023, 11, 16),
+        "use_cache": True,
     }
 
     fetcher = GovernmentUSTreasuryAuctionsFetcher()

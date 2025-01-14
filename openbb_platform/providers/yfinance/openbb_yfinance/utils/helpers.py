@@ -538,3 +538,28 @@ def df_transform_numbers(data: "DataFrame", columns: list) -> "DataFrame":
                 data[col] = data[col].apply(replace_suffix, args=(suffix, multiplier))
 
     return data
+
+def fetch_data_with_sqlite_cache(
+    symbols: str, df: DataFrame, db_path: str, use_cache: bool = True
+) -> DataFrame:
+    """Fetch data with custom cache key."""
+    from openbb_core.app.utils import get_user_cache_directory
+
+    symbols = symbols.split(",")
+    symbols_str = "_".join(sorted(symbols))
+    if use_cache:
+        cache_db_path = f"{get_user_cache_directory()}/ddb/{db_path}.db"
+        cache = SQLiteCache(
+            db_path=cache_db_path, expire=24 * 3600 * 2
+        )  # 创建缓存实例，缓存有效期为两天
+        cache.clear_expired()
+        df = cache.get(symbols_str)
+        if isinstance(df, DataFrame):
+            return df
+        else:
+            cache.set(symbols_str, df)
+            return df
+    else:
+        # 如果不使用缓存，直接发起请求
+        return df
+

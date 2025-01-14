@@ -48,6 +48,7 @@ def test_cftc_cot_fetcher(credentials=test_credentials):
         "id": "239747",
         "start_date": date(2024, 8, 19),
         "end_date": date(2024, 8, 21),
+        "use_cache": True
     }
 
     fetcher = CftcCotFetcher()

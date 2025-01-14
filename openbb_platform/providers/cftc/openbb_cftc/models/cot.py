@@ -7,6 +7,7 @@ from datetime import (
 )
 from typing import Any, Literal, Optional
 
+from openbb_cftc.utils.helpers import get_cot
 from openbb_core.app.model.abstract.error import OpenBBError
 from openbb_core.provider.abstract.fetcher import Fetcher
 from openbb_core.provider.standard_models.cot import COTData, COTQueryParams
@@ -55,6 +56,10 @@ class CftcCotQueryParams(COTQueryParams):
         default=False,
         description="Returns the futures-only report. Default is False, for the combined report.",
     )
+    use_cache: Optional[bool] = Field(
+        default=True,
+        description="Whether or not to use cache. If True, cache will store for two days.",
+    )
 
 
 class CftcCotData(COTData):
@@ -81,9 +86,9 @@ class CftcCotFetcher(Fetcher[CftcCotQueryParams, list[CftcCotData]]):
 
     @staticmethod
     async def aextract_data(
-        query: CftcCotQueryParams,
-        credentials: Optional[dict[str, str]],
-        **kwargs: Any,
+            query: CftcCotQueryParams,
+            credentials: Optional[dict[str, str]],
+            **kwargs: Any,
     ) -> list[dict]:
         """Extract the data from the CFTC API."""
         # pylint: disable=import-outside-toplevel
@@ -140,7 +145,7 @@ class CftcCotFetcher(Fetcher[CftcCotQueryParams, list[CftcCotData]]):
             url += f"&$$app_token={app_token}"
 
         try:
-            response = await amake_request(url, **kwargs)
+            response = await get_cot(url, query.use_cache, **kwargs)
         except OpenBBError as error:
             raise error from error
 
@@ -151,9 +156,9 @@ class CftcCotFetcher(Fetcher[CftcCotQueryParams, list[CftcCotData]]):
 
     @staticmethod
     def transform_data(
-        query: CftcCotQueryParams,
-        data: list[dict],
-        **kwargs: Any,
+            query: CftcCotQueryParams,
+            data: list[dict],
+            **kwargs: Any,
     ) -> list[CftcCotData]:
         """Transform and validate the data."""
         response = data.copy()

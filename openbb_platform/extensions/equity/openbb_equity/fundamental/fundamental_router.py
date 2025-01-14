@@ -20,10 +20,10 @@ router = Router(prefix="/fundamental")
     examples=[APIEx(parameters={"symbol": "AAPL", "provider": "fmp"})],
 )
 async def multiples(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get equity valuation multiples for a given company."""
     return await OBBject.from_query(Query(**locals()))
@@ -44,10 +44,10 @@ async def multiples(
     ],
 )
 async def balance(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the balance sheet for a given company."""
     return await OBBject.from_query(Query(**locals()))
@@ -61,10 +61,10 @@ async def balance(
     ],
 )
 async def balance_growth(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the growth of a company's balance sheet items over time."""
     return await OBBject.from_query(Query(**locals()))
@@ -85,10 +85,10 @@ async def balance_growth(
     ],
 )
 async def cash(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the cash flow statement for a given company."""
     return await OBBject.from_query(Query(**locals()))
@@ -133,10 +133,10 @@ async def cash(
     ],
 )
 async def reported_financials(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get financial statements as reported by the company."""
     return await OBBject.from_query(Query(**locals()))
@@ -150,10 +150,10 @@ async def reported_financials(
     ],
 )
 async def cash_growth(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the growth of a company's cash flow statement items over time."""
     return await OBBject.from_query(Query(**locals()))
@@ -164,10 +164,10 @@ async def cash_growth(
     examples=[APIEx(parameters={"symbol": "AAPL", "provider": "intrinio"})],
 )
 async def dividends(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get historical dividend data for a given company."""
     return await OBBject.from_query(Query(**locals()))
@@ -178,10 +178,10 @@ async def dividends(
     examples=[APIEx(parameters={"symbol": "AAPL", "provider": "fmp"})],
 )
 async def historical_eps(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get historical earnings per share data for a given company."""
     return await OBBject.from_query(Query(**locals()))
@@ -192,10 +192,10 @@ async def historical_eps(
     examples=[APIEx(parameters={"symbol": "AAPL", "provider": "fmp"})],
 )
 async def employee_count(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get historical employee count data for a given company."""
     return await OBBject.from_query(Query(**locals()))
@@ -212,10 +212,10 @@ async def employee_count(
     examples=[APIEx(parameters={"query": "ebitda", "provider": "intrinio"})],
 )
 async def search_attributes(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Search Intrinio data tags to search in latest or historical attributes."""
     return await OBBject.from_query(Query(**locals()))
@@ -234,10 +234,10 @@ async def search_attributes(
     ],
 )
 async def latest_attributes(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the latest value of a data tag from Intrinio."""
     return await OBBject.from_query(Query(**locals()))
@@ -256,10 +256,10 @@ async def latest_attributes(
     ],
 )
 async def historical_attributes(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the historical values of a data tag from Intrinio."""
     return await OBBject.from_query(Query(**locals()))
@@ -280,10 +280,10 @@ async def historical_attributes(
     ],
 )
 async def income(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the income statement for a given company."""
     return await OBBject.from_query(Query(**locals()))
@@ -304,10 +304,10 @@ async def income(
     ],
 )
 async def income_growth(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the growth of a company's income statement items over time."""
     return await OBBject.from_query(Query(**locals()))
@@ -328,10 +328,10 @@ async def income_growth(
     ],
 )
 async def metrics(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get fundamental metrics for a given company."""
     return await OBBject.from_query(Query(**locals()))
@@ -342,10 +342,10 @@ async def metrics(
     examples=[APIEx(parameters={"symbol": "AAPL", "provider": "fmp"})],
 )
 async def management(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get executive management team data for a given company."""
     return await OBBject.from_query(Query(**locals()))
@@ -356,10 +356,10 @@ async def management(
     examples=[APIEx(parameters={"symbol": "AAPL", "provider": "fmp"})],
 )
 async def management_compensation(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get executive management team compensation for a given company over time."""
     return await OBBject.from_query(Query(**locals()))
@@ -380,10 +380,10 @@ async def management_compensation(
     ],
 )
 async def ratios(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get an extensive set of financial and accounting ratios for a given company over time."""
     return await OBBject.from_query(Query(**locals()))
@@ -403,10 +403,10 @@ async def ratios(
     ],
 )
 async def revenue_per_geography(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the geographic breakdown of revenue for a given company over time."""
     return await OBBject.from_query(Query(**locals()))
@@ -426,10 +426,10 @@ async def revenue_per_geography(
     ],
 )
 async def revenue_per_segment(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the revenue breakdown by business segment for a given company over time."""
     return await OBBject.from_query(Query(**locals()))
@@ -443,10 +443,10 @@ async def revenue_per_segment(
     ],
 )
 async def filings(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the URLs to SEC filings reported to EDGAR database, such as 10-K, 10-Q, 8-K, and more.
 
@@ -463,10 +463,10 @@ async def filings(
     examples=[APIEx(parameters={"symbol": "AAPL", "provider": "fmp"})],
 )
 async def historical_splits(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get historical stock splits for a given company."""
     return await OBBject.from_query(Query(**locals()))
@@ -477,10 +477,10 @@ async def historical_splits(
     examples=[APIEx(parameters={"symbol": "AAPL", "year": 2020, "provider": "fmp"})],
 )
 async def transcript(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get earnings call transcripts for a given company."""
     return await OBBject.from_query(Query(**locals()))
@@ -500,10 +500,10 @@ async def transcript(
     ],
 )
 async def trailing_dividend_yield(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the 1 year trailing dividend yield for a given company over time."""
     return await OBBject.from_query(Query(**locals()))
@@ -516,10 +516,58 @@ async def trailing_dividend_yield(
     ],
 )
 async def business_analysis(
-    cc: CommandContext,
-    provider_choices: ProviderChoices,
-    standard_params: StandardParams,
-    extra_params: ExtraParams,
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
 ) -> OBBject:
     """Get the business analysis data for a given company over time."""
+    return await OBBject.from_query(Query(**locals()))
+
+
+@router.command(
+    model="SwSectors",
+    examples=[
+        APIEx(parameters={"symbol": "600519.SS", "provider": "xiaoyuan"}),
+    ],
+)
+async def sw_sectors(
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
+) -> OBBject:
+    """Get the business analysis data for a given company over time."""
+    return await OBBject.from_query(Query(**locals()))
+
+
+@router.command(
+    model="ConceptIndices",
+    examples=[
+        APIEx(parameters={"symbol": "600519.SS", "provider": "xiaoyuan"}),
+    ],
+)
+async def concept_indices(
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
+) -> OBBject:
+    """Get the sw sectors data for a given company over time."""
+    return await OBBject.from_query(Query(**locals()))
+
+
+@router.command(
+    model="BusinessScope",
+    examples=[
+        APIEx(parameters={"symbol": "600519.SS", "provider": "xiaoyuan"}),
+    ],
+)
+async def business_scope(
+        cc: CommandContext,
+        provider_choices: ProviderChoices,
+        standard_params: StandardParams,
+        extra_params: ExtraParams,
+) -> OBBject:
+    """Get the business scope data for a given company over time."""
     return await OBBject.from_query(Query(**locals()))

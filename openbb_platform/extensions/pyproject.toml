@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openbb-extensions"
-version = "1.3.0"
+version = "1.4.0"
 description = "Only for jnzd, aggreate different extensions."
 authors = ["OpenBB Team <hello@openbb.co>"]
 license = "AGPL-3.0-only"

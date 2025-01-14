@@ -16,7 +16,7 @@ from openbb_core.provider.standard_models.treasury_auctions import (
 )
 from pydantic import model_validator, Field
 
-from openbb_government_us.utils.helpers import get_data_from_url
+from openbb_government_us.utils.helpers import treasury_auction
 
 
 class GovernmentUSTreasuryAuctionsQueryParams(USTreasuryAuctionsQueryParams):
@@ -225,7 +225,7 @@ class GovernmentUSTreasuryAuctionsFetcher(
         query_string = get_querystring(_query, [])
 
         url = base_url + query_string + "&format=json"
-        r = await get_data_from_url(url,"government_us", use_cache=query.use_cache)
+        r = await treasury_auction(url, use_cache=query.use_cache)
         data = pd.DataFrame.from_dict(r)
         if data.empty:
             raise EmptyDataError("No data found for the given query.")

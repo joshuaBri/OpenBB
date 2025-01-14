@@ -145,7 +145,7 @@ def test_y_finance_futures_historical_fetcher(credentials=test_credentials):
     assert result is None
 
 
-@pytest.mark.record_http
+# @pytest.mark.record_http
 def test_y_finance_options_chains_fetcher(credentials=test_credentials):
     """Test YFinanceOptionsChainsFetcher."""
 
